@@ -48,6 +48,9 @@ class MyFirstModel(DynamicModel):
     water2SemiUrban = 0.0304
     sea2SemiUrban = 0.0013
 
+    # add small random noise
+    self.noise = uniform(1)/1000
+
     # number of urban or semi-urban neighbours
     noOfUrbanNeigh=windowtotal(urbanScalar, celllength()*3)-urbanScalar
     noOfSemiUrbanNeigh=windowtotal(semiUrbanScalar, celllength()*3)-semiUrbanScalar
@@ -56,7 +59,7 @@ class MyFirstModel(DynamicModel):
     probabilityUrbanTrans = ((infra2Urban * infraScalar) + (semiUrban2Urban * semiUrbanScalar) + \
                              (recreation2Urban * recreationScalar) + (agri2Urban * agriScalar) + \
                              (nature2Urban * natureScalar) + (water2Urban * waterScalar) + \
-                             (sea2Urban * seaScalar)) * noOfUrbanNeigh
+                             (sea2Urban * seaScalar)) * noOfUrbanNeigh + self.noise
     # probability of growth to urban based on growth rate
     probabilityUrbanGrowth = urbanGrowth
 
@@ -64,7 +67,7 @@ class MyFirstModel(DynamicModel):
     probabilitySemiUrbanTrans = ((infra2SemiUrban * infraScalar) + (urban2SemiUrban * urbanScalar) + \
                                  (recreation2SemiUrban * recreationScalar) + (agri2SemiUrban * agriScalar) + \
                                   (nature2SemiUrban * natureScalar) + (water2SemiUrban * waterScalar) + \
-                                 (sea2SemiUrban * seaScalar)) * noOfSemiUrbanNeigh
+                                 (sea2SemiUrban * seaScalar)) * noOfSemiUrbanNeigh + self.noise
     # probability of growth to semi-urban based on growth rate
     probabilitySemiUrbanGrowth = semiUrbanGrowth
 
