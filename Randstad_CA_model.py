@@ -30,7 +30,7 @@ class MyFirstModel(DynamicModel):
     urbanGrowth = 0.00795 #0.0332
     semiUrbanGrowth = 0.097 #0.4430
 
-    # transition probabilities to urban
+    # change probabilities to urban
     infra2Urban = 0.0555
     semiUrban2Urban = 0.4430
     recreation2Urban = 0.0454
@@ -39,7 +39,7 @@ class MyFirstModel(DynamicModel):
     water2Urban = 0.0189
     sea2Urban = 0
 
-    # transition probabilities to semi-urban
+    # change probabilities to semi-urban
     infra2SemiUrban = 0.0160
     urban2SemiUrban = 0.0403
     recreation2SemiUrban = 0.0358
@@ -55,7 +55,7 @@ class MyFirstModel(DynamicModel):
     noOfUrbanNeigh=windowtotal(urbanScalar, celllength()*3)-urbanScalar
     noOfSemiUrbanNeigh=windowtotal(semiUrbanScalar, celllength()*3)-semiUrbanScalar
 
-    # probability of transition to urban, based on cell category and neighbors
+    # probability of change to urban, based on cell category and neighbors
     probabilityUrbanTrans = ((infra2Urban * infraScalar) + (semiUrban2Urban * semiUrbanScalar) + \
                              (recreation2Urban * recreationScalar) + (agri2Urban * agriScalar) + \
                              (nature2Urban * natureScalar) + (water2Urban * waterScalar) + \
@@ -63,7 +63,7 @@ class MyFirstModel(DynamicModel):
     # probability of growth to urban based on growth rate
     probabilityUrbanGrowth = urbanGrowth
 
-    # probability of transition to semi-urban, based on cell category and neighbors
+    # probability of change to semi-urban, based on cell category and neighbors
     probabilitySemiUrbanTrans = ((infra2SemiUrban * infraScalar) + (urban2SemiUrban * urbanScalar) + \
                                  (recreation2SemiUrban * recreationScalar) + (agri2SemiUrban * agriScalar) + \
                                   (nature2SemiUrban * natureScalar) + (water2SemiUrban * waterScalar) + \
